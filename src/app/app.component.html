@@ -1,0 +1,59 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<mat-toolbar class="header" color="primary">
+  <mat-toolbar-row>
+     
+    <!--<span>MyMaterial</span>
+    <span class="example-spacer"></span>
+
+    <button mat-button>About</button>
+    <button mat-button>Services</button>
+    <button mat-button>Contact</button>
+  -->
+    
+  </mat-toolbar-row>
+  </mat-toolbar>
+  
+  <form class="firstform" testForm="ngForm" (ngSubmit)="onSubmit()">
+  <mat-card>
+      Due Date: <b>February 8, 2017 by 4 p.m. Recommendation forms must be received by the application deadline.</b>
+      <br>
+      <br>
+      Application requirements for specific awards, in addition to this application, are outlined in the webpage <a href="http://kch.illinois.edu/kch-awards-2017">http://kch.illinois.edu/kch-awards-2017</a>
+      <br>
+      <br>
+      <div class="example-container">
+          <mat-form-field>
+            <input matInput [(ngModel)]="name" name="name" placeholder="Name" required>
+          </mat-form-field>
+
+          <mat-form-field>
+              <input matInput [(ngModel)]="uinnumber" name="uinnumber" placeholder="UIN Number" required>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput [(ngModel)]="mailingaddress" name="mailingaddress" placeholder="Mailing address" required>
+              </mat-form-field>
+
+          <mat-form-field>
+              <input matInput [(ngModel)]="emailaddress" name="emailaddress" [formControl]="email" placeholder="Email Address" >
+              <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+        
+      
+        
+         <!-- <mat-form-field>
+            <mat-select placeholder="Select">
+              <mat-option value="option">Option</mat-option>
+            </mat-select>
+          </mat-form-field>-->
+        </div>
+
+        <br>
+        
+          <button mat-raised-button color="primary" type="submit">Send Data</button>
+  </mat-card>
+  </form>
+
+  <mat-card *ngIf="answerDisplay">
+    <h1>{{answerDisplay}}, you're damn wirght</h1>
+  </mat-card>
