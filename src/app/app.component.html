@@ -13,7 +13,7 @@
   </mat-toolbar-row>
   </mat-toolbar>
   
-  <form class="firstform" testForm="ngForm" (ngSubmit)="onSubmit()">
+  <form id="form" class="firstform" testForm="ngForm">
   <mat-card>
       Due Date: <b>February 8, 2017 by 4 p.m. Recommendation forms must be received by the application deadline.</b>
       <br>
@@ -23,21 +23,29 @@
       <br>
       <div class="example-container">
           <mat-form-field>
-            <input matInput [(ngModel)]="name" name="name" placeholder="Name" required>
+            <input matInput [(ngModel)]="form1.name" name="name" placeholder="Name" required>
           </mat-form-field>
 
           <mat-form-field>
-              <input matInput [(ngModel)]="uinnumber" name="uinnumber" placeholder="UIN Number" required>
+              <input matInput [(ngModel)]="form1.uinnumber" name="uinnumber" placeholder="UIN Number" required>
             </mat-form-field>
 
             <mat-form-field>
-                <input matInput [(ngModel)]="mailingaddress" name="mailingaddress" placeholder="Mailing address" required>
+                <input matInput [(ngModel)]="form1.mailingaddress" name="mailingaddress" placeholder="Mailing address" required>
               </mat-form-field>
 
           <mat-form-field>
-              <input matInput [(ngModel)]="emailaddress" name="emailaddress" [formControl]="email" placeholder="Email Address" >
+              <input matInput [(ngModel)]="form1.email" name="emailaddress" [formControl]="email" placeholder="Email Address" >
               <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field>
+
+          <div>
+            <button (click)="pdf1.click()" mat-raised-button color="primary">PDF1</button>
+            <input #pdf1 type="file" (change)="onFileInput($event,'pdf1')" accept=".pdf"  style="display:none;" />
+
+            <button (click)="pdf2.click()" mat-raised-button color="primary">PDF2</button>
+            <input #pdf2 type="file" (change)="onFileInput($event,'pdf2')" accept=".pdf"  style="display:none;" />
+          </div>
         
       
         
@@ -50,7 +58,7 @@
 
         <br>
         
-          <button mat-raised-button color="primary" type="submit">Send Data</button> <a mat-raised-button color="primary" href="http://www.ceinina.cl/FormAHS/test_sqlite.php">Excel</a>
+          <button mat-raised-button color="primary" type="submit" (click)="onSubmit()">Send Data</button> <a mat-raised-button color="primary" href="http://www.ceinina.cl/FormAHS/test_sqlite.php">Excel</a>
   </mat-card>
   </form>
 
