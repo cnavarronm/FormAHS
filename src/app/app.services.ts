@@ -18,7 +18,7 @@ export class ConsumeRestAPIService{
        // console.log("name"+name+" / "+"email"+email);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-        return this._http.post('http://ceinina.com/FormAHS/AG/test2.php',params,options)
+        return this._http.post('http://ceinina.com/FormAHS/test_sqlite.php',params,options)
         .map(res=>res.json());
 
     }
