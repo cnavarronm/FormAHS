@@ -22,32 +22,54 @@
       <br>
       <br>
       <div class="example-container">
-          <mat-form-field>
-            <input matInput [(ngModel)]="form1.name" name="name" placeholder="Name" required>
-          </mat-form-field>
-
-          <mat-form-field>
+        <ol>
+          <li>  
+            <mat-form-field>
+              <input matInput [(ngModel)]="form1.name" name="name" placeholder="Name" required> 
+              <mat-error *ngIf="email.invalid">{{getErrorMessageName()}}</mat-error>
+            </mat-form-field>
+          </li>
+          <br>
+          <li>
+            <mat-form-field>
               <input matInput [(ngModel)]="form1.uinnumber" name="uinnumber" placeholder="UIN Number" required>
             </mat-form-field>
-
+          </li>
+          <br>
+          <li>
             <mat-form-field>
                 <input matInput [(ngModel)]="form1.mailingaddress" name="mailingaddress" placeholder="Mailing address" required>
-              </mat-form-field>
-
-          <mat-form-field>
-              <input matInput [(ngModel)]="form1.email" name="emailaddress" [formControl]="email" placeholder="Email Address" >
-              <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field>
+          </li>
+          <br>
+          <li>
+            <mat-form-field>
+                <input matInput [(ngModel)]="form1.email" name="emailaddress" [formControl]="email" placeholder="Email Address" required >
+                <mat-error *ngIf="email.invalid">{{getErrorMessageEmail()}}</mat-error>
+            </mat-form-field>
+          </li>
+          <br>
 
-          <div>
-            <button (click)="pdf1.click()" mat-raised-button color="primary">PDF1</button>
-            <input #pdf1 type="file" (change)="onFileInput($event,'pdf1')" accept=".pdf"  style="display:none;" />
+          <li>
+           <div>
+              <span> {{filesDict['pdf1']?.name}}</span>
+              <button (click)="pdf1.click()" mat-raised-button color="primary">Browse...</button>
+              <input hidden #pdf1 type="file" (change)="onFileInput($event,'pdf1')" accept=".pdf"   />
+            
 
-            <button (click)="pdf2.click()" mat-raised-button color="primary">PDF2</button>
-            <input #pdf2 type="file" (change)="onFileInput($event,'pdf2')" accept=".pdf"  style="display:none;" />
-          </div>
+           </div>
+          </li>
+          <br>
+          <li>
+            <div>
+              <span> {{filesDict['pdf2']?.name}}</span>
+              <button (click)="pdf2.click()" mat-raised-button color="primary">Browse...</button>
+              <input hidden #pdf2 type="file" (change)="onFileInput($event,'pdf2')" accept=".pdf" />
+            </div>
+        </li>
         
-      
+       
+        </ol>
         
          <!-- <mat-form-field>
             <mat-select placeholder="Select">
