@@ -21,29 +21,45 @@ interface MyForm {
 export class AppComponent {
   title = 'app';
   form1: MyForm = {};
+ 
   
   constructor(
     private _consumeRestAPIService: ConsumeRestAPIService
   ) {}
   
   email = new FormControl('', [Validators.required, Validators.email]);
+  name  = new  FormControl('',[Validators.required])
   filesDict = {};
-  
-  getErrorMessage() {
-    return this.email.hasError('required') ? 'You must enter a value' :
+  fileArrayName=[];
+  log='';
+  getErrorMessageEmail() {
+   
+    return this.email.hasError('required') ? 'Email is required' :
         this.email.hasError('email') ? 'Not a valid email' :
+        this.name.hasError('name') ? 'Name is required':
             '';
   }
-
-
+  
+  getErrorMessageName() {
+    
+     return this.name.hasError('required') ? 'Name is required' :
+           '';
+   }
+   
   onFileInput($event, name){
     if($event.target.files && $event.target.files.length > 0){
       this.filesDict[name] = $event.target.files[0];
+     
+     
+
+      
     }else{
       delete this.filesDict[name];
     }
   }
 
+ 
+ 
   onSubmit(){
     //console.log("asdasdasd"+this.name+this.femail)
     //this._consumeRestAPIService.SenDataForm(this.name,this.uinnumber,this.mailingaddress,this.emailaddress).subscribe(response =>{response.data;console.log("test")});
